@@ -10,9 +10,9 @@ package yumxpress.util;
  * @author SCALive
  */
 public class OwnerProfile {
-    private static String ownerName;
-    private static String companyName;
-    private static String companyId;
+    private static String ownerName = "Muhammad";
+    private static String companyName = "ABC";
+    private static String companyId = "CMP-101";
 
     public static String getOwnerName() {
         return ownerName;

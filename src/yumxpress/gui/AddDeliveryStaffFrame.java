@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import yumxpress.dao.CompanyDAO;
 import yumxpress.dao.StaffDAO;
 import yumxpress.pojo.StaffPojo;
-import yumxpress.util.Mailer;
+
 import yumxpress.util.OwnerProfile;
 import yumxpress.util.PasswordEncryption;
 import yumxpress.util.Validator;
@@ -303,15 +303,12 @@ public class AddDeliveryStaffFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Registration Sucessfull");
             // send mail code
             Map<String, String> emailCredentials = CompanyDAO.getEmailCredentailsByCompanyId(OwnerProfile.getCompanyId());
-            Mailer.sendMail(emailCredentials, staff);
+  
             JOptionPane.showMessageDialog(null, "Mail sent to " + staff.getEmailId());
             clearAll();
         }catch(SQLException sq){
              JOptionPane.showMessageDialog(null, " DB Error IN AddDeliveryStaffFrame");
              sq.printStackTrace();
-        }catch (MessagingException ex) {
-            JOptionPane.showMessageDialog(null, "MAIL ERROR IN AddDeliveryStaffFrame");
-            ex.printStackTrace();
         }
     }//GEN-LAST:event_btnAddStaffActionPerformed
 

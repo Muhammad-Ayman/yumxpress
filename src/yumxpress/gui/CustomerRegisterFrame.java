@@ -13,7 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import yumxpress.dao.CustomerDAO;
 import yumxpress.pojo.CustomerPojo;
-import yumxpress.util.Mailer;
+
 import yumxpress.util.PasswordEncryption;
 import yumxpress.util.Validator;
 
@@ -226,7 +226,7 @@ public class CustomerRegisterFrame extends javax.swing.JFrame {
                 Map<String,String>emailCredentials=new HashMap<>();
                 emailCredentials.put("emailId", "19shivangi.sharma80@gmail.com");
                 emailCredentials.put("securityKey", "mrlb mtzi cuzr cfxm");
-                Mailer.sendMail(emailCredentials, customer);
+
                 JOptionPane.showMessageDialog(null,"Email Sent Successfully to:"+customer.getEmailId());
                 clearAll();
                 return;
@@ -237,10 +237,7 @@ public class CustomerRegisterFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"DB ERROR IN CustomerRegistrationFrame");
             sq.printStackTrace();
         }
-       catch(MessagingException sq){
-            JOptionPane.showMessageDialog(null,"MAIL ERROR IN CustomerRegistrationFrame");
-            sq.printStackTrace();
-        }
+      
     }//GEN-LAST:event_btnRegiserActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

@@ -17,7 +17,7 @@ import yumxpress.dao.StaffDAO;
 import yumxpress.pojo.OrderPojo;
 import yumxpress.pojo.PlaceOrderPojo;
 import yumxpress.pojo.ProductPojo;
-import yumxpress.util.Mailer;
+
 import yumxpress.util.UserProfile;
 
 /**
@@ -239,7 +239,7 @@ public class OrderProductFrame extends javax.swing.JFrame {
           }
           OrderPojo order=OrderDAO.getOrderDetailsByOrderId(orderId);
           Map<String,String>emailCredentials=CompanyDAO.getEmailCredentailsByCompanyId(product.getCompanyId());
-          Mailer.sendMail(emailCredentials, order);
+
           JOptionPane.showMessageDialog(null,"Order placed and Email Sent Successfully to:"+UserProfile.getEmailId());
           this.dispose();
           new OrderFoodFrame().setVisible(true);
@@ -248,10 +248,7 @@ public class OrderProductFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"DB ERROR IN OrderProductFrame");
             sq.printStackTrace();
         }
-       catch(MessagingException sq){
-            JOptionPane.showMessageDialog(null,"MAIL ERROR IN OrderProductFrame");
-            sq.printStackTrace();
-        }
+      
     }//GEN-LAST:event_btnOrderProductActionPerformed
 
     /**

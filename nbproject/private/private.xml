@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/dao/CompanyDAO.java</file>
-            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/dbutil/DBConnection.java</file>
-            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/gui/CustomerAccountFrame.java</file>
-            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/util/Validator.java</file>
+            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/gui/AddFoodFrame.java</file>
+            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/gui/CustomerCartFrame.java</file>
+            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/gui/CustomerLoginFrame.java</file>
+            <file>file:/C:/Users/IMuha/Documents/NetBeansProjects/yumxpress/src/yumxpress/gui/CustomerOptionFrame.java</file>
         </group>
     </open-files>
 </project-private>

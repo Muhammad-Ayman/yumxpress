@@ -69,6 +69,11 @@ public class DeliveryStaffLoginFrame extends javax.swing.JFrame {
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 152, 255));
@@ -196,6 +201,12 @@ public class DeliveryStaffLoginFrame extends javax.swing.JFrame {
          return;
      }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        new UserVerifyFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnBackActionPerformed
     private boolean validateInputs(){
         
         if(txtEmailId.getText().trim().isEmpty()||String.valueOf(txtPassword.getPassword()).trim().isEmpty()){

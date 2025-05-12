@@ -6,11 +6,15 @@
 package yumxpress.gui;
 
 import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import yumxpress.dao.ProductDAO;
 import yumxpress.pojo.ProductPojo;
 import yumxpress.util.OwnerProfile;
@@ -22,9 +26,9 @@ import yumxpress.util.SpoonacularAPI;
  */
 public class AddFoodFrame extends javax.swing.JFrame {
     
-    private List<ProductPojo> foodList;
+
     private int foodIndex=0;
-    private ProductPojo product;
+    private ProductPojo product = new ProductPojo();
 
     /**
      * Creates new form AddFoodFrame
@@ -57,13 +61,9 @@ public class AddFoodFrame extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtSearchFood = new javax.swing.JTextField();
         txtFoodName = new javax.swing.JTextField();
-        lblBack = new javax.swing.JLabel();
-        lblNext = new javax.swing.JLabel();
         btnSearchFood = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtFoodPrice = new javax.swing.JTextField();
@@ -188,10 +188,6 @@ public class AddFoodFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(132, 111, 174));
         jLabel2.setText("Add Food Item");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(132, 111, 174));
-        jLabel3.setText("Search Food :");
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(132, 111, 174));
         jLabel4.setText("Food Name :");
@@ -199,20 +195,6 @@ public class AddFoodFrame extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(132, 111, 174));
         jLabel5.setText("Food Image");
-
-        lblBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yumxpress/icons/icons8-left-arrow-64.png"))); // NOI18N
-        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblBackMouseClicked(evt);
-            }
-        });
-
-        lblNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/yumxpress/icons/icons8-right-arrow-64 (1).png"))); // NOI18N
-        lblNext.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblNextMouseClicked(evt);
-            }
-        });
 
         btnSearchFood.setBackground(new java.awt.Color(179, 255, 153));
         btnSearchFood.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
@@ -245,32 +227,18 @@ public class AddFoodFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(143, 143, 143))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtSearchFood, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                            .addComponent(txtFoodName)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblBack, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblFoodImage, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnSearchFood)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNext, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77))))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(56, 56, 56)
+                                .addComponent(txtFoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblFoodImage, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jLabel8)
@@ -278,36 +246,27 @@ public class AddFoodFrame extends javax.swing.JFrame {
                         .addComponent(txtFoodPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(223, 223, 223)
-                        .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAddItem, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(254, 254, 254)
+                        .addComponent(btnSearchFood)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtSearchFood, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSearchFood)))
-                .addGap(36, 36, 36)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(btnSearchFood)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtFoodName, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(jLabel5)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblBack, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNext, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(lblFoodImage, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
+                .addComponent(lblFoodImage, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -342,45 +301,9 @@ public class AddFoodFrame extends javax.swing.JFrame {
 
     private void btnSearchFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchFoodActionPerformed
         // TODO add your handling code here:
-        String searchFood = txtSearchFood.getText().trim();
-        if (searchFood.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please type a food name");
-            return;
-        }
-        try {
-            searchFood = searchFood.replaceAll(" ", "-");
-            foodList = SpoonacularAPI.getAllItemDetailsByName(searchFood);
-            if (foodList.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "No food details for " + searchFood + " found");
-                return;
-            }
-            lblNext.setEnabled(true);
-            lblBack.setEnabled(true);
-            showFoodDetailsByIndex(foodIndex);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Exception while using API");
-            ex.printStackTrace();
-        }
+       selectImage();
 
     }//GEN-LAST:event_btnSearchFoodActionPerformed
-
-    private void lblNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNextMouseClicked
-        // TODO add your handling code here:
-        foodIndex++;
-        if(foodIndex>=foodList.size()){
-            foodIndex=0;
-        }
-        showFoodDetailsByIndex(foodIndex);
-    }//GEN-LAST:event_lblNextMouseClicked
-
-    private void lblBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBackMouseClicked
-        // TODO add your handling code here:
-        foodIndex--;
-         if(foodIndex<0){
-           foodIndex=foodList.size()-1;
-        }
-        showFoodDetailsByIndex(foodIndex);
-    }//GEN-LAST:event_lblBackMouseClicked
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         // TODO add your handling code here:
@@ -399,12 +322,7 @@ public class AddFoodFrame extends javax.swing.JFrame {
                 return;
             }
             JOptionPane.showMessageDialog(null, "Product successfully added");
-            foodList.remove(foodIndex);
-            if (foodList.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "All varities of " + txtSearchFood.getText().trim() + " added");
-                clearAll();
-                return;
-            }
+          
             foodIndex = 0;
             showFoodDetailsByIndex(foodIndex);
 
@@ -447,8 +365,7 @@ public class AddFoodFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOrderListActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-         new SellerOptionFrame().setVisible(true);
+        new UserVerifyFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -478,6 +395,9 @@ public class AddFoodFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddFoodFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -497,20 +417,16 @@ public class AddFoodFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnViewStaff;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblBack;
     private javax.swing.JLabel lblFoodImage;
-    private javax.swing.JLabel lblNext;
     private javax.swing.JLabel lblOwnerProfile;
     private javax.swing.JTextField txtFoodName;
     private javax.swing.JTextField txtFoodPrice;
-    private javax.swing.JTextField txtSearchFood;
     // End of variables declaration//GEN-END:variables
 
     private void showFoodDetailsByIndex(int foodIndex) {
@@ -542,4 +458,52 @@ public class AddFoodFrame extends javax.swing.JFrame {
         lblBack.setEnabled(false);
         txtSearchFood.requestFocus();
     }
+
+    private void selectImage() {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "gif");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            displayImage(selectedFile);
+            
+        }
+    }
+
+    private void displayImage(File imageFile) {
+        try {
+            Image image = ImageIO.read(imageFile);
+            String imageType = getImageType(imageFile);
+            product.setProductImageType(imageType);
+            product.setProductImage(image);
+            if (image != null) {
+                // Resize image to fit the label size
+                ImageIcon icon = new ImageIcon(image.getScaledInstance(lblFoodImage.getWidth(), lblFoodImage.getHeight(), Image.SCALE_SMOOTH));
+                lblFoodImage.setIcon(icon);
+                lblFoodImage.setText(""); // Clear the text
+            } else {
+                JOptionPane.showMessageDialog(this, "Could not load the image.");
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error loading image: " + e.getMessage());
+        }
+    }
+
+        // Helper method to get the image type (file extension)
+    private String getImageType(File imageFile) {
+        // Get the file name and extract the extension
+        String fileName = imageFile.getName();
+        String imageType = "jpg"; // Default value if the extension is not found
+        
+        int lastIndex = fileName.lastIndexOf('.');
+        if (lastIndex != -1 && lastIndex < fileName.length() - 1) {
+            imageType = fileName.substring(lastIndex + 1).toLowerCase(); // Extract extension and make it lowercase
+        }
+        
+        return imageType;
+    }
+
+     
 }
